@@ -41,24 +41,24 @@ const carreras = [
     },
 ];
 
-function crearIconoOjo(link) {
-    let liEye = document.createElement("li");
-    let aEye = document.createElement("a");
+const crearIconoOjo = (link) => {
+    const liEye = document.createElement("li");
+    const aEye = document.createElement("a");
     aEye.className = "btn btn-success text-white mt-2";
     aEye.href = link;
-    let iEye = document.createElement("i");
+    const iEye = document.createElement("i");
     iEye.className = "far fa-eye";
     aEye.appendChild(iEye);
     liEye.appendChild(aEye);
 
     return liEye;
-}
+};
 
-function crearRatingStars(rating) {
-    let ulStars = document.createElement("ul");
+const crearRatingStars = (rating) => {
+    const ulStars = document.createElement("ul");
     ulStars.className = "list-unstyled d-flex justify-content-center mb-1";
 
-    let liStars = document.createElement("li");
+    const liStars = document.createElement("li");
     liStars.innerHTML =
         '<i class="text-warning fa fa-star"></i>'.repeat(rating) +
         '<i class="text-muted fa fa-star"></i>'.repeat(5 - rating);
@@ -66,61 +66,87 @@ function crearRatingStars(rating) {
     ulStars.appendChild(liStars);
 
     return ulStars;
-}
+};
 
-function crearTarjetaProducto(carrera) {
-    let divCol = document.createElement("div");
-    divCol.className = "col-md-4";
-
-    let divCardOuter = document.createElement("div");
+const crearExteriorTarjeta = () => {
+    const divCardOuter = document.createElement("div");
     divCardOuter.className = "card mb-4 product-wap rounded-0";
+    return divCardOuter;
+};
 
-    let divCardInner = document.createElement("div");
-    divCardInner.className = "card rounded-0";
-
-    let img = document.createElement("img");
+const crearImagenCarrera = (imagen) => {
+    const img = document.createElement("img");
     img.className = "card-img rounded-0 img-fluid";
-    img.src = carrera.image;
+    img.src = imagen;
+    return img;
+};
 
-    let divOverlay = document.createElement("div");
+const crearOverlayTarjeta = (link) => {
+    const divOverlay = document.createElement("div");
     divOverlay.className =
         "card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center";
 
-    let ul = document.createElement("ul");
+    const ul = document.createElement("ul");
     ul.className = "list-unstyled";
 
     // Agregar el ojito
-    ul.appendChild(crearIconoOjo("shop-single.html"));
+    ul.appendChild(crearIconoOjo(link));
 
     divOverlay.appendChild(ul);
+
+    return divOverlay;
+};
+
+const crearInteriorTarjeta = (carrera) => {
+    const divCardInner = document.createElement("div");
+    divCardInner.className = "card rounded-0";
+
+    const img = crearImagenCarrera(carrera.image);
+
+    const divOverlay = crearOverlayTarjeta("shop-single.html");
     divCardInner.appendChild(img);
     divCardInner.appendChild(divOverlay);
-    divCardOuter.appendChild(divCardInner);
 
-    let divCardBody = document.createElement("div");
+    return divCardInner;
+};
+
+const crearCuerpoTarjeta = (carrera) => {
+    const divCardBody = document.createElement("div");
     divCardBody.className = "card-body";
 
-    let aProduct = document.createElement("a");
+    const aProduct = document.createElement("a");
     aProduct.href = "shop-single.html";
     aProduct.className = "h3 text-decoration-none";
     aProduct.textContent = carrera.nombre;
 
-    let ulSizeAndColors = document.createElement("ul");
+    const ulSizeAndColors = document.createElement("ul");
     ulSizeAndColors.className =
         "w-100 list-unstyled d-flex justify-content-between mb-0";
 
     divCardBody.appendChild(crearRatingStars(carrera.rating));
     divCardBody.appendChild(aProduct);
     divCardBody.appendChild(ulSizeAndColors);
+    return divCardBody;
+};
 
+const crearTarjetaProducto = (carrera) => {
+    const tarjeta = document.createElement("div");
+    tarjeta.className = "col-md-4";
+
+    const divCardOuter = crearExteriorTarjeta();
+    const divCardInner = crearInteriorTarjeta(carrera);
+    const divCardBody = crearCuerpoTarjeta(carrera);
+
+    divCardOuter.appendChild(divCardInner);
     divCardOuter.appendChild(divCardBody);
-    divCol.appendChild(divCardOuter);
+    tarjeta.appendChild(divCardOuter);
 
-    document.getElementById("carreras-row").appendChild(divCol);
-}
+    return tarjeta;
+};
 
 (function () {
+    const carrerasContenedor = document.getElementById("carreras-row");
     for (let carrera of carreras) {
-        crearTarjetaProducto(carrera);
+        carrerasContenedor.appendChild(crearTarjetaProducto(carrera));
     }
 })();

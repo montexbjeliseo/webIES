@@ -170,26 +170,28 @@ https://templatemo.com/tm-559-zay-shop
     <!-- Start Contact -->
     <div class="container py-5">
         <div class="row py-5">
-            <form class="col-md-9 m-auto" method="post" role="form">
+            <form class="col-md-9 m-auto" method="post" role="form" id="form-contacto">
                 <div class="row">
                     <div class="form-group col-md-6 mb-3">
                         <label for="inputname">Nombre</label>
-                        <input type="text" class="form-control mt-1" id="name" name="name" placeholder="Nombre">
+                        <input type="text" class="form-control mt-1" id="name" name="name" placeholder="Nombre"
+                            required>
                     </div>
                     <div class="form-group col-md-6 mb-3">
                         <label for="inputemail">Correo electrónico</label>
                         <input type="email" class="form-control mt-1" id="email" name="email"
-                            placeholder="Correo electrónico">
+                            placeholder="Correo electrónico" required>
                     </div>
                 </div>
                 <div class="mb-3">
                     <label for="inputsubject">Asunto</label>
-                    <input type="text" class="form-control mt-1" id="subject" name="subject" placeholder="Asunto">
+                    <input type="text" class="form-control mt-1" id="subject" name="subject" placeholder="Asunto"
+                        required>
                 </div>
                 <div class="mb-3">
                     <label for="inputmessage">Mensaje</label>
-                    <textarea class="form-control mt-1" id="message" name="message" placeholder="Mensaje"
-                        rows="8"></textarea>
+                    <textarea class="form-control mt-1" id="message" name="message" placeholder="Mensaje" rows="8"
+                        required></textarea>
                 </div>
                 <div class="row">
                     <div class="col text-end mt-2">
@@ -216,7 +218,8 @@ https://templatemo.com/tm-559-zay-shop
                         </li>
                         <li>
                             <i class="fa fa-envelope fa-fw"></i>
-                            <a class="text-decoration-none" href="mailto:secretariaiesmachagai@gmail.com">secretariaiesmachagai@gmail.com</a>
+                            <a class="text-decoration-none"
+                                href="mailto:secretariaiesmachagai@gmail.com">secretariaiesmachagai@gmail.com</a>
                         </li>
                     </ul>
                 </div>
@@ -249,7 +252,8 @@ https://templatemo.com/tm-559-zay-shop
                 <div class="col-auto me-auto">
                     <ul class="list-inline text-left footer-icons">
                         <li class="list-inline-item border border-light rounded-circle text-center">
-                            <a class="text-light text-decoration-none" target="_blank" href="https://www.facebook.com/profile.php?id=100086514458082"><i
+                            <a class="text-light text-decoration-none" target="_blank"
+                                href="https://www.facebook.com/profile.php?id=100086514458082"><i
                                     class="fab fa-facebook-f fa-lg fa-fw"></i></a>
                         </li>
                         <li class="list-inline-item border border-light rounded-circle text-center">
@@ -290,6 +294,7 @@ https://templatemo.com/tm-559-zay-shop
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/templatemo.js"></script>
     <script src="assets/js/custom.js"></script>
+    <script src="js/contact.js"></script>
     <!-- End Script -->
 </body>
 

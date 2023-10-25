@@ -1,152 +1,114 @@
-const carreras = [
-    {
-        nombre: "PROFESORADO PARA EL NIVEL SECUNDARIO EN CIENCIAS DE LA ADMINISTRACIÓN",
-        image: "img/IES_logo.svg",
-        rating: 4,
-    },
-    {
-        nombre: "PROFESORADO PARA EL NIVEL SECUNDARIO EN GEOGRAFÍA",
-        image: "img/IES_logo.svg",
-        rating: 4,
-    },
-    {
-        nombre: "PROFESORADO PARA EL NIVEL SECUNDARIO DE HISTORIA",
-        image: "img/IES_logo.svg",
-        rating: 4,
-    },
-    {
-        nombre: "PROFESORADO DE INGLÉS",
-        image: "img/IES_logo.svg",
-        rating: 5,
-    },
-    {
-        nombre: "PROFESORADO PARA EL NIVEL SECUNDARIO EN LENGUA Y LITERATURA",
-        image: "img/IES_logo.svg",
-        rating: 4,
-    },
-    {
-        nombre: "PROFESORADO PARA EL NIVEL SECUNDARIO EN MATEMATICA",
-        image: "img/IES_logo.svg",
-        rating: 5,
-    },
-    {
-        nombre: "TECNICATURA SUPERIOR EN DESARROLLO DE SOFTWARE",
-        image: "img/IES_logo.svg",
-        rating: 3,
-    },
-    {
-        nombre: "TECNICATURA SUPERIOR EN BROMATOLOGÍA",
-        image: "img/IES_logo.svg",
-        rating: 3,
-    },
-];
+const params = {
+    filter: 'all'
+}
 
-const crearIconoOjo = (link) => {
-    const liEye = document.createElement("li");
-    const aEye = document.createElement("a");
-    aEye.className = "btn btn-success text-white mt-2";
-    aEye.href = link;
-    const iEye = document.createElement("i");
-    iEye.className = "far fa-eye";
-    aEye.appendChild(iEye);
-    liEye.appendChild(aEye);
+const loadContent = () => {
+    const cardContainer = document.getElementById('carreras-row');
+    cardContainer.innerText = '';
 
-    return liEye;
-};
+    let filtered = carreras;
 
-const crearRatingStars = (rating) => {
-    const ulStars = document.createElement("ul");
-    ulStars.className = "list-unstyled d-flex justify-content-center mb-1";
+    if (params.filter !== 'all') {
+        filtered = carreras.filter((carrera) => {
+            return carrera.categoria === params.filter;
+        });
+    }
 
-    const liStars = document.createElement("li");
-    liStars.innerHTML =
-        '<i class="text-warning fa fa-star"></i>'.repeat(rating) +
-        '<i class="text-muted fa fa-star"></i>'.repeat(5 - rating);
+    crearTarjetas(filtered, cardContainer);
+}
 
-    ulStars.appendChild(liStars);
+const crearTarjetas = (carreras, container) => {
+    for (let carrera of carreras) {
+        container.appendChild(crearTarjeta(carrera));
+    }
+}
 
-    return ulStars;
-};
+const crearOverlay = (carrera) => {
+    const overlay = document.createElement('div');
+    overlay.classList.add('card-img-overlay', 'rounded-0', 'product-overlay', 'd-flex', 'align-items-center', 'justify-content-center');
 
-const crearExteriorTarjeta = () => {
-    const divCardOuter = document.createElement("div");
-    divCardOuter.className = "card mb-4 product-wap rounded-0";
-    return divCardOuter;
-};
+    const ul = document.createElement('ul');
+    ul.classList.add('list-unstyled');
+    const eyeli = document.createElement('li');
+    const a = document.createElement('a');
+    a.classList.add('btn', 'btn-success', 'text-white', 'mt-2');
+    a.href = './shop-single.html?id=' + carrera.id;
 
-const crearImagenCarrera = (imagen) => {
-    const img = document.createElement("img");
-    img.className = "card-img rounded-0 img-fluid";
-    img.src = imagen;
-    return img;
-};
+    const eyeIcon = document.createElement('i');
+    eyeIcon.classList.add('far', 'fa-eye');
 
-const crearOverlayTarjeta = (link) => {
-    const divOverlay = document.createElement("div");
-    divOverlay.className =
-        "card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center";
+    a.appendChild(eyeIcon);
+    eyeli.appendChild(a);
 
-    const ul = document.createElement("ul");
-    ul.className = "list-unstyled";
+    ul.appendChild(eyeli);
+    overlay.appendChild(ul);
 
-    // Agregar el ojito
-    ul.appendChild(crearIconoOjo(link));
+    return overlay;
+}
 
-    divOverlay.appendChild(ul);
+const crearBodyCard = (carrera) => {
+    const cardbody = document.createElement('div');
+    cardbody.classList.add('card-body');
+    const a = document.createElement('a');
+    a.classList.add('h3', 'text-decoration-none');
+    a.href = './shop-single.html?id=' + carrera.id;
+    a.textContent = carrera.nombre;
+    cardbody.appendChild(a);
+    return cardbody;
+}
 
-    return divOverlay;
-};
+const crearTarjeta = (carrera) => {
+    const container = document.createElement('div');
+    container.classList.add('col-md-4');
 
-const crearInteriorTarjeta = (carrera) => {
-    const divCardInner = document.createElement("div");
-    divCardInner.className = "card rounded-0";
+    const card = document.createElement('div');
+    card.classList.add('card', 'mb-4', 'product-wap', 'rounded-0');
+    const cardImgContainer = document.createElement('div');
+    cardImgContainer.classList.add('card', 'rounded-0');
 
-    const img = crearImagenCarrera(carrera.image);
+    const img = document.createElement('img');
+    img.classList.add('card-img', 'rounded-0', 'img-fluid');
+    img.src = carrera.image;
 
-    const divOverlay = crearOverlayTarjeta("shop-single.html");
-    divCardInner.appendChild(img);
-    divCardInner.appendChild(divOverlay);
+    cardImgContainer.appendChild(img);
 
-    return divCardInner;
-};
+    card.appendChild(cardImgContainer);
 
-const crearCuerpoTarjeta = (carrera) => {
-    const divCardBody = document.createElement("div");
-    divCardBody.className = "card-body";
+    cardImgContainer.appendChild(crearOverlay(carrera));
 
-    const aProduct = document.createElement("a");
-    aProduct.href = "shop-single.html";
-    aProduct.className = "h3 text-decoration-none";
-    aProduct.textContent = carrera.nombre;
+    card.appendChild(crearBodyCard(carrera));
 
-    const ulSizeAndColors = document.createElement("ul");
-    ulSizeAndColors.className =
-        "w-100 list-unstyled d-flex justify-content-between mb-0";
+    container.appendChild(card);
 
-    divCardBody.appendChild(crearRatingStars(carrera.rating));
-    divCardBody.appendChild(aProduct);
-    divCardBody.appendChild(ulSizeAndColors);
-    return divCardBody;
-};
-
-const crearTarjetaProducto = (carrera) => {
-    const tarjeta = document.createElement("div");
-    tarjeta.className = "col-md-4";
-
-    const divCardOuter = crearExteriorTarjeta();
-    const divCardInner = crearInteriorTarjeta(carrera);
-    const divCardBody = crearCuerpoTarjeta(carrera);
-
-    divCardOuter.appendChild(divCardInner);
-    divCardOuter.appendChild(divCardBody);
-    tarjeta.appendChild(divCardOuter);
-
-    return tarjeta;
-};
+    return container;
+}
 
 (function () {
-    const carrerasContenedor = document.getElementById("carreras-row");
-    for (let carrera of carreras) {
-        carrerasContenedor.appendChild(crearTarjetaProducto(carrera));
+    try {
+        var items = document.createElement('script');
+        items.src = 'js/items.js';
+        document.head.appendChild(items);
+        items.addEventListener("load", loadContent);
+
+        document.getElementById('filterbtn-todo').addEventListener("click", () => {
+            filterByCategory('all');
+        });
+
+        document.getElementById('filterbtn-formacion-docente').addEventListener("click", () => {
+            filterByCategory('Profesorado');
+        });
+
+        document.getElementById('filterbtn-tecnicatura').addEventListener("click", () => {
+            filterByCategory('Tecnicatura');
+        });
+
+    } catch (err) {
+        console.log(err);
     }
+
 })();
+
+const filterByCategory = (category) => {
+    params.filter = category;
+    loadContent();
+}

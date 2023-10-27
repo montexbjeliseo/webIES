@@ -5,7 +5,7 @@ const loadContent = () => {
     const carrera = carreras.find((e) => e.id === item);
 
     const titleDOMElement = document.getElementById("item-title");
-    titleDOMElement.textContent = carrera.nombre ?? 'Aher';
+    titleDOMElement.textContent = carrera.nombre;
 
     const image = document.getElementById('product-detail');
     image.src = carrera.image;

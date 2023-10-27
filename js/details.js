@@ -1,6 +1,6 @@
 const loadContent = () => {
     const urlParams = new URLSearchParams(window.location.search);
-    const item = parseInt(urlParams.get('id'));
+    const item = parseInt(urlParams.get('id')?? '1');
 
     const carrera = carreras.find((e) => e.id === item);
 
@@ -23,7 +23,6 @@ const loadContent = () => {
 
     const id_item = document.getElementById('id_item');
     id_item.value = carrera.id;
-
 }
 
 (function () {

@@ -1,0 +1,36 @@
+{
+    "carreras": [
+        {
+            "id": 1,
+            "nombre": "PROFESORADO PARA EL NIVEL SECUNDARIO EN CIENCIAS DE LA ADMINISTRACIÓN"
+        },
+        {
+            "id": 2,
+            "nombre": "PROFESORADO PARA EL NIVEL SECUNDARIO EN GEOGRAFÍA"
+        },
+        {
+            "id": 3,
+            "nombre": "PROFESORADO PARA EL NIVEL SECUNDARIO DE HISTORIA"
+        },
+        {
+            "id": 4,
+            "nombre": "PROFESORADO DE INGLÉS"
+        },
+        {
+            "id": 5,
+            "nombre": "PROFESORADO PARA EL NIVEL SECUNDARIO EN LENGUA Y LITERATURA"
+        },
+        {
+            "id": 6,
+            "nombre": "PROFESORADO PARA EL NIVEL SECUNDARIO EN MATEMÁTICA"
+        },
+        {
+            "id": 7,
+            "nombre": "TECNICATURA SUPERIOR EN DESARROLLO DE SOFTWARE"
+        },
+        {
+            "id": 8,
+            "nombre": "TECNICATURA SUPERIOR EN BROMATOLOGÍA"
+        }
+    ]
+}

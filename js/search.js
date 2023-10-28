@@ -37,7 +37,7 @@ const searchCarrera = (entrada) => {
     entrada = entrada.toLowerCase();
     const encontrados = [];
     for (let carrera of carrerasData) {
-        if (carrera.nombre.toLowerCase().includes(entrada)) {
+        if (carrera.nombre.toLowerCase().includes(entrada) && entrada !== '') {
             encontrados.push(carrera);
         }
     }
@@ -79,7 +79,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const inputSearch = document.getElementById("inputModalSearch");
     inputSearch.addEventListener("keyup", function (event) {
         try {
-            console.log(`q=${event.target.value}`, searchCarrera(event.target.value));
             mostrarEnlaces(searchCarrera(event.target.value));
         } catch (err) {
             console.log(err);

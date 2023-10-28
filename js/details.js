@@ -13,6 +13,12 @@ const loadContent = () => {
     const descripcion = document.getElementById('descripcion');
     descripcion.textContent = carrera.descripcion;
 
+    const duracion = document.getElementById('duracion');
+    duracion.textContent = carrera.duracion;
+
+    const planDeEstudio = document.getElementById('plan-de-estudio');
+    planDeEstudio.textContent = carrera.planDeEstudio;	
+
     const salidaLaboral = document.getElementById('salida-laboral');
     
     for (let salida of carrera.salidasLaborales) {

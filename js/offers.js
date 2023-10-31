@@ -3,6 +3,12 @@ const params = {
 }
 
 const loadContent = () => {
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const categoria = urlParams.get('filter')??'all';
+
+    params.filter = categoria;
+
     const cardContainer = document.getElementById('carreras-row');
     cardContainer.innerText = '';
 
@@ -90,17 +96,11 @@ const crearTarjeta = (carrera) => {
         document.head.appendChild(items);
         items.addEventListener("load", loadContent);
 
-        document.getElementById('filterbtn-todo').addEventListener("click", () => {
-            filterByCategory('all');
-        });
+        document.getElementById('filterbtn-todo').href = '?filter=all';
 
-        document.getElementById('filterbtn-formacion-docente').addEventListener("click", () => {
-            filterByCategory('Profesorado');
-        });
+        document.getElementById('filterbtn-formacion-docente').href = '?filter=Profesorado';
 
-        document.getElementById('filterbtn-tecnicatura').addEventListener("click", () => {
-            filterByCategory('Tecnicatura');
-        });
+        document.getElementById('filterbtn-tecnicatura').href = '?filter=Tecnicatura';
 
     } catch (err) {
         console.log(err);

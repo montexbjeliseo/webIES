@@ -45,31 +45,48 @@ const searchCarrera = (entrada) => {
 }
 
 const crearEnlace = (carrera) => {
+    const resultElementDiv = document.createElement('div');
+
     const a = document.createElement('a');
     a.href = './shop-single.html?id=' + carrera.id;
     a.textContent = carrera.nombre;
-    return a;
+    a.classList.add('link-dark');
+    resultElementDiv.classList.add('position-relative')
+
+    const badge = document.createElement('span');
+    badge.classList.add(
+        'position-absolute',
+        'top-0',
+        'start-100',
+        'translate-middle',
+        'badge',
+        'rounded-pill',
+        'bg-success'
+    );
+
+    badge.textContent = 'Carrera';
+
+    resultElementDiv.appendChild(a);
+    resultElementDiv.appendChild(badge);
+    return resultElementDiv;
 }
 
 const mostrarEnlaces = (resultados) => {
-    
-    const enlaces = document.querySelectorAll("#modal-search-results a");
-    console.log(enlaces)
-    enlaces.forEach(function (enlace) {
-        enlace.addEventListener("click", function (event) {
-            event.stopPropagation();
-        });
-    });
-    
+
     const resultContainer = document.getElementById('modal-search-results');
     resultContainer.innerHTML = '';
     const h1 = document.createElement('h1');
-    h1.textContent = 'Resultados';
     h1.classList.add('h1');
     resultContainer.appendChild(h1);
+    if (resultados.length === 0) {
+        h1.textContent = 'No hay resultados';
+        return;
+    }
+
+    h1.textContent = 'Resultados';
+
     for (let carrera of resultados) {
         const div = document.createElement('div');
-        div.style.userSelect = 'all';
         div.appendChild(crearEnlace(carrera));
         resultContainer.appendChild(div);
     }

@@ -11,6 +11,7 @@ const obtenerPosteo = async(id) => {
 }
 
 const mostrarPosteo = (post) => {
+    document.title = "IES Machagai: " + post.titulo;
     const postTitle = document.querySelector('#post-title');
     postTitle.textContent = post.titulo;
     const postOverview = document.querySelector('#post-overview');

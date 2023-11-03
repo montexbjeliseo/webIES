@@ -1,55 +1,84 @@
-const carrerasData = [
+const get_base_url = () => {
+    let url = window.location.href.split('/');
+    url.pop();
+    return url = url.join('/');
+}
+
+const searchData = [
     {
-        "id": 1,
-        "nombre": "PROFESORADO PARA EL NIVEL SECUNDARIO EN CIENCIAS DE LA ADMINISTRACIÓN"
+        "nombre": 'La Importancia de la Educación Superior en el Siglo XXI',
+        "tag": "post",
+        "enlace": "/post-details.html?id=1"
     },
     {
-        "id": 2,
-        "nombre": "PROFESORADO PARA EL NIVEL SECUNDARIO EN GEOGRAFÍA"
+        "nombre": 'El Impacto de la Tecnología en la Educación Superior',
+        "tag": "post",
+        "enlace": "/post-details.html?id=2"
     },
     {
-        "id": 3,
-        "nombre": "PROFESORADO PARA EL NIVEL SECUNDARIO DE HISTORIA"
+        "nombre": 'Desarrollo de Habilidades Profesionales en la Educación Superior',
+        "tag": "post",
+        "enlace": "/post-details.html?id=3"
     },
     {
-        "id": 4,
-        "nombre": "PROFESORADO DE INGLÉS"
+        "nombre": "PROFESORADO PARA EL NIVEL SECUNDARIO EN CIENCIAS DE LA ADMINISTRACIÓN",
+        "tag": "carrera",
+        "enlace": "/shop-single.html?id=1"
     },
     {
-        "id": 5,
-        "nombre": "PROFESORADO PARA EL NIVEL SECUNDARIO EN LENGUA Y LITERATURA"
+        "nombre": "PROFESORADO PARA EL NIVEL SECUNDARIO EN GEOGRAFÍA",
+        "tag": "carrera",
+        "enlace": "/shop-single.html?id=2"
     },
     {
-        "id": 6,
-        "nombre": "PROFESORADO PARA EL NIVEL SECUNDARIO EN MATEMÁTICA"
+        "nombre": "PROFESORADO PARA EL NIVEL SECUNDARIO DE HISTORIA",
+        "tag": "carrera",
+        "enlace": "/shop-single.html?id=3"
     },
     {
-        "id": 7,
-        "nombre": "TECNICATURA SUPERIOR EN DESARROLLO DE SOFTWARE"
+        "nombre": "PROFESORADO DE INGLÉS",
+        "tag": "carrera",
+        "enlace": "/shop-single.html?id=4"
     },
     {
-        "id": 8,
-        "nombre": "TECNICATURA SUPERIOR EN BROMATOLOGÍA"
+        "nombre": "PROFESORADO PARA EL NIVEL SECUNDARIO EN LENGUA Y LITERATURA",
+        "tag": "carrera",
+        "enlace": "/shop-single.html?id=5"
+    },
+    {
+        "nombre": "PROFESORADO PARA EL NIVEL SECUNDARIO EN MATEMÁTICA",
+        "tag": "carrera",
+        "enlace": "/shop-single.html?id=6"
+    },
+    {
+        "nombre": "TECNICATURA SUPERIOR EN DESARROLLO DE SOFTWARE",
+        "tag": "carrera",
+        "enlace": "/shop-single.html?id=7"
+    },
+    {
+        "nombre": "TECNICATURA SUPERIOR EN BROMATOLOGÍA",
+        "tag": "carrera",
+        "enlace": "/shop-single.html?id=8"
     }
 ];
 
-const searchCarrera = (entrada) => {
+const search = (entrada) => {
     entrada = entrada.toLowerCase();
     const encontrados = [];
-    for (let carrera of carrerasData) {
-        if (carrera.nombre.toLowerCase().includes(entrada) && entrada !== '') {
-            encontrados.push(carrera);
+    for (let data of searchData) {
+        if ((data.nombre.toLowerCase().includes(entrada) || data.tag.includes(entrada)) && entrada !== '') {
+            encontrados.push(data);
         }
     }
     return encontrados;
 }
 
-const crearEnlace = (carrera) => {
+const crearEnlace = (data) => {
     const resultElementDiv = document.createElement('div');
 
     const a = document.createElement('a');
-    a.href = './shop-single.html?id=' + carrera.id;
-    a.textContent = carrera.nombre;
+    a.href = get_base_url() + data.enlace;
+    a.textContent = data.nombre;
     a.classList.add('link-dark');
     resultElementDiv.classList.add('position-relative')
 
@@ -61,10 +90,10 @@ const crearEnlace = (carrera) => {
         'translate-middle',
         'badge',
         'rounded-pill',
-        'bg-success'
+        data.tag === 'carrera' ? 'bg-success' : 'bg-secondary'
     );
 
-    badge.textContent = 'Carrera';
+    badge.textContent = data.tag;
 
     resultElementDiv.appendChild(a);
     resultElementDiv.appendChild(badge);
@@ -85,9 +114,9 @@ const mostrarEnlaces = (resultados) => {
 
     h1.textContent = 'Resultados';
 
-    for (let carrera of resultados) {
+    for (let resultado of resultados) {
         const div = document.createElement('div');
-        div.appendChild(crearEnlace(carrera));
+        div.appendChild(crearEnlace(resultado));
         resultContainer.appendChild(div);
     }
 }
@@ -96,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const inputSearch = document.getElementById("inputModalSearch");
     inputSearch.addEventListener("keyup", function (event) {
         try {
-            mostrarEnlaces(searchCarrera(event.target.value));
+            mostrarEnlaces(search(event.target.value));
         } catch (err) {
             console.log(err);
         }

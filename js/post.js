@@ -1,4 +1,4 @@
-const obtenerPosteo = async(id) => {
+const obtenerPosteo = async (id) => {
     let url = window.location.href.split('/');
     url.pop();
     url = url.join('/');
@@ -34,9 +34,23 @@ const mostrarPosteo = (post) => {
     }
 }
 
-document.addEventListener('DOMContentLoaded', async() => {
+const showNotFoundError = () => {
+    document.title = "IES Machagai: Posteo no encontrado";
+    const postTitle = document.querySelector('#post-title');
+    postTitle.textContent = "Error 404: no encontrado";
+    const postOverview = document.querySelector('#post-overview');
+    postOverview.textContent = "No se encontrado el articulo buscado";
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
     const urlParams = new URLSearchParams(window.location.search);
     const id = parseInt(urlParams.get('id') ?? '1');
-    const post = await obtenerPosteo(id);
-    mostrarPosteo(post);
+    try {
+        const post = await obtenerPosteo(id);
+        mostrarPosteo(post);
+    } catch (error) {
+        showNotFoundError();
+        console.error(error);
+    }
+
 });

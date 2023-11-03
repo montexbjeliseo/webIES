@@ -1,5 +1,8 @@
 const obtenerPosteo = async(id) => {
-    return await fetch(`/data/post-${id}.json`)
+    let url = window.location.href.split('/');
+    url.pop();
+    url = url.join('/');
+    return await fetch(`${url}/data/post-${id}.json`)
         .then(response => response.json())
         .then(data => data)
         .catch(error => {
@@ -33,7 +36,6 @@ const mostrarPosteo = (post) => {
 document.addEventListener('DOMContentLoaded', async() => {
     const urlParams = new URLSearchParams(window.location.search);
     const id = parseInt(urlParams.get('id') ?? '1');
-
     const post = await obtenerPosteo(id);
     mostrarPosteo(post);
 });

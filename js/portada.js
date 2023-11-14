@@ -8,7 +8,7 @@ const portadaInstituto = [
         image: 'img/banner1.webp'
     },
     {
-        titulo: "Tu Pasión, Tu Profesión",
+        titulo: "Tu Pasión, Tu Profesión       ",
         subtitulo: "Donde las Carreras Técnicas y Docentes Se Hacen Realidad",
         descripcion:
             "En nuestro instituto, transformamos tus pasiones en profesiones. Convertimos tu amor por la tecnología y la enseñanza en carreras exitosas. Con profesores experimentados y programas innovadores, te guiaremos hacia el éxito en las emocionantes carreras técnicas y docentes.",
@@ -48,7 +48,7 @@ const carouselItem = (item) => {
     const img = document.createElement('img');
     img.src = item.image;
     img.alt = item.subtitulo;
-    img.classList.add('img-fluid');
+    img.classList.add('img-fluid', 'object-fit-cover');
     col1.appendChild(img);
 
     // Column 2

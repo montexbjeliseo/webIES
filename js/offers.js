@@ -68,12 +68,12 @@ const crearTarjeta = (carrera) => {
     container.classList.add('col-md-4');
 
     const card = document.createElement('div');
-    card.classList.add('card', 'mb-4', 'product-wap', 'rounded-0');
+    card.classList.add('card', 'mb-4', 'product-wap', 'h-100');
     const cardImgContainer = document.createElement('div');
-    cardImgContainer.classList.add('card', 'rounded-0');
+    cardImgContainer.classList.add('card');
 
     const img = document.createElement('img');
-    img.classList.add('card-img', 'rounded-0', 'img-fluid');
+    img.classList.add('card-img', 'img-fluid');
     img.src = carrera.image;
 
     cardImgContainer.appendChild(img);

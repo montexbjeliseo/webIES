@@ -13,10 +13,12 @@ const obtenerPosteo = async (id) => {
 const mostrarPosteo = (post) => {
     document.title = "IES Machagai: " + post.titulo;
     const postTitle = document.querySelector('#post-title');
+    postTitle.classList.add("h1");
     postTitle.textContent = post.titulo;
     const postOverview = document.querySelector('#post-overview');
     postOverview.textContent = post.resumen;
     const postSubtitle = document.querySelector('#post-subtitle');
+    postSubtitle.classList.add("h2");
     postSubtitle.textContent = post.subtitulo;
 
     const postContents = document.querySelector('#post-contents');
@@ -25,6 +27,7 @@ const mostrarPosteo = (post) => {
     for (const content of post.contenidos) {
         if (content.encabezado) {
             const encabezado = document.createElement('h4');
+            encabezado.classList.add('h2');
             encabezado.textContent = content.encabezado;
             postContents.appendChild(encabezado);
         }

@@ -1,3 +1,30 @@
-/*
-Custom Css
-*/
+.product-wap .card-img {
+    height: 27wh;
+    width: 100%;
+}
+
+.bg-dark {
+    background-color: #393E46 !important;
+}
+
+.bg-black {
+    background-color: #222831 !important;
+}
+
+#hero-carousel { 
+    /* background: linear-gradient(#38a852, #566a96) !important; */
+    background: linear-gradient(#38a852, #566a96) !important;
+    color: #fff;
+}
+
+.bg-success { 
+    background: linear-gradient(#38a852, #566a96) !important;
+}
+.btn-success {
+  background-color: #00ADB5 !important;
+  border-color: #566a96 !important;
+}
+
+.text-success {
+    color: #28a745 !important;
+}

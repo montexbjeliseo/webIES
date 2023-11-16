@@ -51,12 +51,12 @@ function crearTarjetaDePublicacion(post) {
     return divRow;
 }
 
-const mostrarPosteos = (posteos) => {
-    const container = document.querySelector('#posts');
+const mostrarPosteos = (posteos, container) => {
+    
     for (let post of posteos) {
         container.appendChild(crearTarjetaDePublicacion(post));
     }
 }
 
-
-mostrarPosteos(posteos);
+const postContainer = document.querySelector('#posts');
+mostrarPosteos(posteos, postContainer);

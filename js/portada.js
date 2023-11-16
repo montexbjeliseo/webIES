@@ -23,6 +23,24 @@ const portadaInstituto = [
     }
 ];
 
+const carrerasDestacadas = [
+    {
+        id: 4,
+        nombre: "PROFESORADO DE INGLÉS",
+        image: "img/english-2724442_1280.jpg"
+    },
+    {
+        id: 6,
+        nombre: "PROFESORADO PARA EL NIVEL SECUNDARIO EN MATEMÁTICA",
+        image: "img/board-4855963_1280.jpg"
+    },
+    {
+        id: 1,
+        nombre: "PROFESORADO PARA EL NIVEL SECUNDARIO EN CIENCIAS DE LA ADMINISTRACIÓN",
+        image: "img/teamwork-3213924_1280.jpg"
+    }
+]
+
 const carouselItem = (item) => {
     // Element
     const itemElement = document.createElement('div');
@@ -77,10 +95,76 @@ const carouselItem = (item) => {
     return itemElement;
 }
 
+const crearOverlay = (carrera) => {
+    const overlay = document.createElement('div');
+    overlay.classList.add('card-img-overlay', 'rounded-0', 'product-overlay', 'd-flex', 'align-items-center', 'justify-content-center');
+
+    const ul = document.createElement('ul');
+    ul.classList.add('list-unstyled');
+    const eyeli = document.createElement('li');
+    const a = document.createElement('a');
+    a.classList.add('btn', 'btn-success', 'text-white', 'mt-2');
+    a.href = './shop-single.html?id=' + carrera.id;
+
+    const eyeIcon = document.createElement('i');
+    eyeIcon.classList.add('far', 'fa-eye');
+
+    a.appendChild(eyeIcon);
+    eyeli.appendChild(a);
+
+    ul.appendChild(eyeli);
+    overlay.appendChild(ul);
+
+    return overlay;
+}
+
+const crearBodyCard = (carrera) => {
+    const cardbody = document.createElement('div');
+    cardbody.classList.add('card-body');
+    const a = document.createElement('a');
+    a.classList.add('h3', 'text-decoration-none');
+    a.href = './shop-single.html?id=' + carrera.id;
+    a.textContent = carrera.nombre;
+    cardbody.appendChild(a);
+    return cardbody;
+}
+
+const crearTarjeta = (carrera) => {
+    const container = document.createElement('div');
+    container.classList.add('col-md-4');
+
+    const card = document.createElement('div');
+    card.classList.add('card', 'mb-4', 'product-wap', 'h-100');
+    const cardImgContainer = document.createElement('div');
+    cardImgContainer.classList.add('card');
+
+    const img = document.createElement('img');
+    img.classList.add('card-img', 'img-fluid');
+    img.src = carrera.image;
+
+    cardImgContainer.appendChild(img);
+
+    card.appendChild(cardImgContainer);
+
+    cardImgContainer.appendChild(crearOverlay(carrera));
+
+    card.appendChild(crearBodyCard(carrera));
+
+    container.appendChild(card);
+
+    return container;
+}
+
 document.addEventListener('DOMContentLoaded', (e) => {
     const carouselInner = document.getElementsByClassName('carousel-inner')[0];
     carouselInner.innerHTML = '';
-    for (item of portadaInstituto) {
+    for (let item of portadaInstituto) {
         carouselInner.appendChild(carouselItem(item));
+    }
+
+    const featuredOffers = document.querySelector("#featuredOffers");
+    featuredOffers.innerHTML = '';
+    for (let offer of carrerasDestacadas) {
+        featuredOffers.appendChild(crearTarjeta(offer));
     }
 });

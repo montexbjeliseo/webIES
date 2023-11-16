@@ -1,3 +1,10 @@
+#btn-top {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+
 .product-wap .card-img {
     height: 27wh;
     width: 100%;

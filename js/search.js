@@ -5,6 +5,7 @@ const get_base_url = () => {
 }
 
 const searchData = [
+    // Posts
     {
         "nombre": 'La Importancia de la Educación Superior en el Siglo XXI',
         "tag": "post",
@@ -20,6 +21,7 @@ const searchData = [
         "tag": "post",
         "enlace": "/post-details.html?id=3"
     },
+    // Carreras
     {
         "nombre": "PROFESORADO PARA EL NIVEL SECUNDARIO EN CIENCIAS DE LA ADMINISTRACIÓN",
         "tag": "carrera",

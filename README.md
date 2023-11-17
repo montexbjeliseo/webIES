@@ -18,6 +18,6 @@ Si tienes python3 puede hacerlo de la siguiente forma con la terminal en la dire
 ```bash
 python -m http.server 8080
 ```
-Acceder a http:127.0.0.1:8080
+Acceder a http://127.0.0.1:8080
 
 Si estás usando visual studio code puedes usar Live Server.

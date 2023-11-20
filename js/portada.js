@@ -5,21 +5,21 @@ const portadaInstituto = [
         descripcion:
             "En nuestro instituto, estamos comprometidos a formar a la próxima generación de líderes en tecnología y educación. Nuestros programas de carreras técnicas y docentes brindan las habilidades y conocimientos necesarios para sobresalir en un mundo en constante cambio. Únete a nosotros y sé parte del cambio.",
         active: true,
-        image: 'img/banner1.webp'
+        image: 'img/banner1.png'
     },
     {
         titulo: "Tu Pasión, Tu Profesión       ",
         subtitulo: "Donde las Carreras Técnicas y Docentes Se Hacen Realidad",
         descripcion:
             "En nuestro instituto, transformamos tus pasiones en profesiones. Convertimos tu amor por la tecnología y la enseñanza en carreras exitosas. Con profesores experimentados y programas innovadores, te guiaremos hacia el éxito en las emocionantes carreras técnicas y docentes.",
-        image: 'img/banner2.webp'
+        image: 'img/banner2.png'
     },
     {
         titulo: "Excelencia en Educación Superior",
         subtitulo: "Desarrollando Habilidades Técnicas y Pedagógicas para el Éxito",
         descripcion:
             "En nuestro instituto, la excelencia es la norma. Nuestros programas de educación superior están diseñados para cultivar habilidades técnicas y pedagógicas de primera categoría. Con un enfoque en la calidad y la innovación, te preparamos para sobresalir en el campo de la tecnología y la educación.",
-        image: 'img/banner3.webp'
+        image: 'img/banner3.png'
     }
 ];
 
